@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Event Booking Frontend
 
-## Getting Started
+Sistema de reserva de eventos desenvolvido com Next.js 16, React 19 e TypeScript.
 
-First, run the development server:
+## 🚀 Tecnologias
+
+- **Next.js 16.0.8** - Framework React com App Router
+- **React 19.2.1** - Biblioteca para interfaces de usuário
+- **TypeScript 5** - Tipagem estática
+- **Tailwind CSS 4** - Framework CSS utilitário
+- **ESLint** - Linter para qualidade de código
+
+## 📁 Estrutura do Projeto
+
+```
+event_booking_Frontend/
+├── src/
+│   ├── app/              # Páginas e rotas (App Router)
+│   │   ├── globals.css   # Estilos globais
+│   │   ├── layout.tsx    # Layout raiz
+│   │   └── page.tsx      # Página inicial
+│   ├── components/       # Componentes reutilizáveis
+│   │   └── ui/          # Componentes de interface
+│   ├── contexts/        # Contextos React
+│   ├── hooks/           # Hooks customizados
+│   ├── lib/             # Configurações e utilitários de biblioteca
+│   ├── services/        # Serviços de API
+│   ├── types/           # Definições de tipos TypeScript
+│   └── utils/           # Funções utilitárias
+├── public/              # Arquivos estáticos
+└── ...                  # Arquivos de configuração
+```
+
+## 🛠️ Instalação
+
+1. Clone o repositório
+2. Instale as dependências:
+
+```bash
+npm install
+```
+
+3. Configure as variáveis de ambiente:
+
+```bash
+cp .env.local.example .env.local
+```
+
+4. Edite o arquivo `.env.local` com suas configurações
+
+## 💻 Desenvolvimento
+
+Execute o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para criar uma versão de produção:
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🧪 Linting
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Execute o linter:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run lint
+```
 
-## Deploy on Vercel
+## 📝 Variáveis de Ambiente
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `NEXT_PUBLIC_API_URL` - URL da API backend
+- `NODE_ENV` - Ambiente de execução
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contribuindo
+
+1. Crie uma branch para sua feature
+2. Faça commit das mudanças
+3. Envie um pull request
+
+## 📄 Licença
+
+Este projeto é privado.
