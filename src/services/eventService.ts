@@ -1,43 +1,56 @@
-import { API_BASE_URL } from '@/lib/api';
-import type { Event } from '@/types';
+import { API_BASE_URL, getAuthHeaders } from '@/lib/api';
+import type { Venue, CreateVenueData } from '@/types';
 
-export const eventService = {
-  async getEvents(): Promise<Event[]> {
-    const response = await fetch(`${API_BASE_URL}/events`);
-    if (!response.ok) throw new Error('Falha ao buscar eventos');
+export const venueService = {
+  async getVenues(): Promise<Venue[]> {
+    const response = await fetch(`${API_BASE_URL}/venues`, {
+      headers: getAuthHeaders(),
+    });
+    if (!response.ok) throw new Error('Falha ao buscar locais');
     return response.json();
   },
 
-  async getEventById(id: string): Promise<Event> {
-    const response = await fetch(`${API_BASE_URL}/events/${id}`);
-    if (!response.ok) throw new Error('Falha ao buscar evento');
+  async getHighlights(): Promise<Venue[]> {
+    const response = await fetch(`${API_BASE_URL}/venues/highlights`, {
+      headers: getAuthHeaders(),
+    });
+    if (!response.ok) throw new Error('Falha ao buscar locais em destaque');
     return response.json();
   },
 
-  async createEvent(event: Omit<Event, 'id' | 'createdAt' | 'updatedAt'>): Promise<Event> {
-    const response = await fetch(`${API_BASE_URL}/events`, {
+  async getVenueById(id: string): Promise<Venue> {
+    const response = await fetch(`${API_BASE_URL}/venues/${id}`, {
+      headers: getAuthHeaders(),
+    });
+    if (!response.ok) throw new Error('Falha ao buscar local');
+    return response.json();
+  },
+
+  async createVenue(venue: CreateVenueData): Promise<Venue> {
+    const response = await fetch(`${API_BASE_URL}/venues`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(event),
+      headers: getAuthHeaders(),
+      body: JSON.stringify(venue),
     });
-    if (!response.ok) throw new Error('Falha ao criar evento');
+    if (!response.ok) throw new Error('Falha ao criar local');
     return response.json();
   },
 
-  async updateEvent(id: string, event: Partial<Event>): Promise<Event> {
-    const response = await fetch(`${API_BASE_URL}/events/${id}`, {
+  async updateVenue(id: string, venue: Partial<CreateVenueData>): Promise<Venue> {
+    const response = await fetch(`${API_BASE_URL}/venues/${id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(event),
+      headers: getAuthHeaders(),
+      body: JSON.stringify(venue),
     });
-    if (!response.ok) throw new Error('Falha ao atualizar evento');
+    if (!response.ok) throw new Error('Falha ao atualizar local');
     return response.json();
   },
 
-  async deleteEvent(id: string): Promise<void> {
-    const response = await fetch(`${API_BASE_URL}/events/${id}`, {
+  async deleteVenue(id: string): Promise<void> {
+    const response = await fetch(`${API_BASE_URL}/venues/${id}`, {
       method: 'DELETE',
+      headers: getAuthHeaders(),
     });
-    if (!response.ok) throw new Error('Falha ao deletar evento');
+    if (!response.ok) throw new Error('Falha ao deletar local');
   },
 };

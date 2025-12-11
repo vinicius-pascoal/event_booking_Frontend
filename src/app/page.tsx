@@ -1,14 +1,28 @@
+'use client';
+
+import { useAuth } from '@/contexts/AuthContext';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { Loading } from '@/components/ui';
+
 export default function Home() {
+  const { isAuthenticated, isAdmin, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading) {
+      if (isAuthenticated) {
+        // Redireciona baseado no tipo de usuário
+        router.push(isAdmin ? '/admin' : '/dashboard');
+      } else {
+        router.push('/login');
+      }
+    }
+  }, [isAuthenticated, isAdmin, loading, router]);
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-center mb-8">
-          Event Booking
-        </h1>
-        <p className="text-center text-gray-600">
-          Sistema de Reserva de Eventos
-        </p>
-      </main>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <Loading size="lg" />
     </div>
   );
 }
